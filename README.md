@@ -36,3 +36,7 @@ https://github.com/matterport/Mask_RCNN/releases/download/v2.0/mask_rcnn_coco.h5
 
 ### Run the python file to train and evaluate the model
 python gun_object_detection.py
+
+
+### Output image
+![Sample Output image](Gangadharsmg/Guns-Object-Detection/sample_output1.png?raw=true "Result")
