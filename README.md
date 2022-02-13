@@ -1,5 +1,5 @@
 # Guns-Object-Detection
-Model to detect the gun objects in an image
+Model to detect the gun objects in an image based on Mask R-CNN Model using Keras
 
 
 
