@@ -39,4 +39,4 @@ python gun_object_detection.py
 
 
 ### Output image
-![Sample Output image](Gangadharsmg/Guns-Object-Detection/sample_output1.png?raw=true "Result")
+![Sample Output image](Guns-Object-Detection/sample_output1.png?raw=true "Result")
