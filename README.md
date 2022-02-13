@@ -30,6 +30,9 @@ pip install -r requirements.txt
 Just make sure all the relative paths are correct in your system.
 
 
+### Download the model weights to a file with the name ‘mask_rcnn_coco.h5‘ in your current working directory.
+https://github.com/matterport/Mask_RCNN/releases/download/v2.0/mask_rcnn_coco.h5
+
 
 ### Run the python file to train and evaluate the model
 python gun_object_detection.py
