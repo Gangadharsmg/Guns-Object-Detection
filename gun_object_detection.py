@@ -1,6 +1,4 @@
 from os import listdir
-from xml.etree import ElementTree
-
 from matplotlib import pyplot
 from matplotlib.patches import Rectangle
 from mrcnn.config import Config
@@ -27,7 +25,7 @@ class Guns(Dataset):
         for filename in listdir(images_dir):
             # extract image id
             image_id = filename[:-5]
-            # skip all images after 150 if we are building the train set
+            # skip all images after 266 if we are building the train set
             if is_train and int(image_id) >= 266:
                 continue
             # skip all images before 266 if we are building the test/val set
@@ -43,7 +41,6 @@ class Guns(Dataset):
         boxes = list()
         with open(filename, 'r') as label_file:
             l_count = int(label_file.readline())
-
             for i in range(l_count):
                 box = list(map(int, label_file.readline().split()))
                 boxes.append(box)
@@ -82,7 +79,7 @@ class Guns(Dataset):
 class GunConfig(Config):
     # define the name of the configuration
     NAME = "gun_cfg"
-    # number of classes (background + kangaroo)
+    # number of classes (background + gun)
     NUM_CLASSES = 1 + 1
     # number of training steps per epoch
     STEPS_PER_EPOCH = 10
@@ -92,7 +89,7 @@ class GunConfig(Config):
 class PredictionConfig(Config):
     # define the name of the configuration
     NAME = "gun_cfg"
-    # number of classes (background + kangaroo)
+    # number of classes (background + gun)
     NUM_CLASSES = 1 + 1
     # simplify GPU config
     GPU_COUNT = 1
