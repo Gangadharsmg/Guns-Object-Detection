@@ -11,6 +11,8 @@ from numpy import asarray
 from numpy import expand_dims
 from numpy import mean
 from numpy import zeros
+from keras.preprocessing.image import load_img
+from keras.preprocessing.image import img_to_array
 
 
 class Guns(Dataset):
@@ -212,3 +214,40 @@ print("Test mAP: %.3f" % test_mAP)
 plot_actual_vs_predicted(train_set, model, cfg)
 # plot predictions for test dataset
 plot_actual_vs_predicted(test_set, model, cfg)
+
+# draw an image with detected objects
+def draw_image_with_boxes(filename, boxes_list):
+     # load the image
+
+    data = pyplot.imread(filename)
+     # plot the image
+    pyplot.imshow(data)
+     # get the context for drawing boxes
+    ax = pyplot.gca()
+     # plot each box
+    for box in boxes_list:
+          # get coordinates
+        y1, x1, y2, x2 = box
+          # calculate width and height of the box
+        width, height = x2 - x1, y2 - y1
+          # create the shape
+        rect = Rectangle((x1, y1), width, height, fill=False, color='red')
+          # draw the box
+        ax.add_patch(rect)
+     # show the plot
+    pyplot.show()
+ 
+
+ # create config
+cfg = PredictionConfig()
+# define the model
+rcnn_model = MaskRCNN(mode='inference', model_dir='./', config=cfg)
+# load model weights
+rcnn_model.load_weights('gun_cfg20220213T2112/mask_rcnn_gun_cfg_0005.h5', by_name=True)
+# load photograph
+img = load_img('83.jpeg')
+img = img_to_array(img)
+# make prediction
+results = rcnn_model.detect([img], verbose=0)
+# visualize the results
+draw_image_with_boxes('83.jpeg', results[0]['rois'])
